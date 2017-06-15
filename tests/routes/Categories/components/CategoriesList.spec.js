@@ -3,7 +3,7 @@ import CategoriesList from 'routes/Categories/components/CategoriesList'
 import { shallow } from 'enzyme'
 
 describe('<CategoriesList />', () => {
-    let _store, _state, _fakeReducer, _provider, _wrapper
+    let _state, _wrapper
 
     beforeEach(() => {
         _state = [{
