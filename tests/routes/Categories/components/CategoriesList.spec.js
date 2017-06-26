@@ -27,4 +27,28 @@ describe('<CategoriesList />', () => {
         //console.log(_wrapper.debug())
         expect(_wrapper.find('Connect(Category)')).to.have.length(2)
     })
+
+    it('Has id supplied', () => {
+        expect(_wrapper.findWhere(c => { console.log(a); return c.name() == 'Connect(Category)' && c.props().length == 4})).to.have.length(2)
+    })
+
+    describe('Each child <Category />', () => {
+        let _childPropsLocator
+
+        beforeEach(() => {
+            _childPropsLocator = (expr) => _wrapper.findWhere(c => c.name() == 'Connect(Category)' && expr(c.props()));
+        })
+
+        it('Has id supplied', () => {
+            expect(_childPropsLocator(p => p.id)).to.have.length(2)
+        })
+
+        it('Has name supplied', () => {
+            expect(_childPropsLocator(p => p.name)).to.have.length(2)
+        })
+
+        it('Has path supplied', () => {
+            expect(_childPropsLocator(p => p.path)).to.have.length(2)
+        })
+    })
 })
