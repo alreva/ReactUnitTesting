@@ -8,5 +8,10 @@
         "id": "2",
         "name": "Category 2",
         "path": "/api/v1/images/2.json"
+    },
+    {
+        "id": "3",
+        "name": "Category 3",
+        "path": "/api/v1/images/3.json"
     }
 ]

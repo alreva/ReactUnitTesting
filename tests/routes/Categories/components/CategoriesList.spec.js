@@ -28,10 +28,6 @@ describe('<CategoriesList />', () => {
         expect(_wrapper.find('Connect(Category)')).to.have.length(2)
     })
 
-    it('Has id supplied', () => {
-        expect(_wrapper.findWhere(c => { console.log(a); return c.name() == 'Connect(Category)' && c.props().length == 4})).to.have.length(2)
-    })
-
     describe('Each child <Category />', () => {
         let _childPropsLocator
 

@@ -9,7 +9,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  items : state.images
+  complete : state.images.complete,
+  items : state.images.images
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Images)

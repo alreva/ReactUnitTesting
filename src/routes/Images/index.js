@@ -1,5 +1,5 @@
-import { injectReducer } from '../../store/reducers'
-import { imagesAll } from './modules/images'
+import { injectReducer } from 'store/reducers'
+import { imagesAll, imagesCategorySwitched } from './modules/images'
 import imagesApi from './api/ImagesApi'
 
 export default (store) => ({
@@ -14,6 +14,9 @@ export default (store) => ({
 
       injectReducer(store, { key: 'images', reducer })
 
+      console.log(`Category ID: ${nextState.params.id}`)
+
+      store.dispatch(imagesCategorySwitched())
       store.dispatch(imagesAll(() => imagesApi.getImages(nextState.params.id)))
 
       cb(null, Images)
