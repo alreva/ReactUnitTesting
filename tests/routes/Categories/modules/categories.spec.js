@@ -49,6 +49,21 @@ describe("Categories > categories module", () => {
 
         })
 
+        describe('Any other action', () => {
+
+            const state = {}
+
+            it ('Should not affect the state', () => {
+                categoriesReducer(
+                    state,
+                    {
+                        type: 'SOME UNKNOWN ACTION'
+                    }
+                ).should.equal(state)
+            })
+
+        })
+
     })
 
 })
