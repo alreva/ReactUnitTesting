@@ -204,6 +204,16 @@ if (!__TEST__) {
   config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
 }
 
+if (__TEST__) {
+  config.module.rules.push({
+    test: /\.js$/,
+    include: path.resolve('src/'),
+    loader: 'istanbul-instrumenter-loader',
+    enforce: 'post',
+    exclude: /node_modules|\.spec\.js$/,
+  })
+}
+
 // Production Optimizations
 // ------------------------------------
 if (__PROD__) {

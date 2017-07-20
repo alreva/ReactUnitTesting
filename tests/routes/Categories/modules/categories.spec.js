@@ -4,7 +4,7 @@ import {
     default as categoriesReducer
 } from 'routes/Categories/modules/categories'
 
-describe("Categories > categories module", () => {
+describe("Categories --> categories module", () => {
 
     describe("Reducer", () => {
 
