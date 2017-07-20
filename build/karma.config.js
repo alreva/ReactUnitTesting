@@ -9,7 +9,10 @@ const karmaConfig = {
   singleRun: !argv.watch,
   coverageReporter: {
     reporters: [
-      { type: 'text-summary' },
+      { 
+        type: 'text',
+        includeAllSources: true,
+      },
     ],
   },
   files: [{
@@ -19,9 +22,10 @@ const karmaConfig = {
     included : true
   }],
   frameworks: ['mocha'],
-  reporters: ['mocha'],
+  reporters: ['mocha', 'coverage'],
   preprocessors: {
     [TEST_BUNDLER]: ['webpack'],
+    'src/**/modules/*.js': ['coverage']
   },
   logLevel: 'WARN',
   browserConsoleLogOptions: {
