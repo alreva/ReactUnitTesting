@@ -24,27 +24,13 @@ describe('<CategoriesList />', () => {
     });
 
     it('Has two <Category /> elements', () => {
-        //console.log(_wrapper.debug())
         expect(_wrapper.find('Connect(Category)')).to.have.length(2)
     })
 
-    describe('Each child <Category />', () => {
-        let _childPropsLocator
-
-        beforeEach(() => {
-            _childPropsLocator = (expr) => _wrapper.findWhere(c => c.name() == 'Connect(Category)' && expr(c.props()));
-        })
-
-        it('Has id supplied', () => {
-            expect(_childPropsLocator(p => p.id)).to.have.length(2)
-        })
-
-        it('Has name supplied', () => {
-            expect(_childPropsLocator(p => p.name)).to.have.length(2)
-        })
-
-        it('Has path supplied', () => {
-            expect(_childPropsLocator(p => p.path)).to.have.length(2)
+    it('Each child <Category /> has state supplied', () => {
+        const categories = _wrapper.find('Connect(Category)')
+        _state.forEach((state, i) => {
+            categories.at(i).props().should.include(state)
         })
     })
 })
