@@ -11,8 +11,6 @@ module.exports = {
   main: 'main',
   /** The name of the directory in which to emit compiled assets */
   outDir: 'dist',
-  /** The name of the directory containing all tests */
-  testsDir: 'tests',
   /** The base path for all projects assets (relative to the website root) */
   publicPath: '/',
   /** Whether to generate sourcemaps */
