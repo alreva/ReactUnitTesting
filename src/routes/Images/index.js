@@ -16,7 +16,6 @@ export default (store) => ({
 
       console.log(`Category ID: ${nextState.params.id}`)
 
-      store.dispatch(imagesCategorySwitched())
       store.dispatch(imagesAll(() => imagesApi.getImages(nextState.params.id)))
 
       cb(null, Images)

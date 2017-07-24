@@ -23,6 +23,7 @@ export function imagesCategorySwitched() {
 
 export const imagesAll = (getImages) => {
   return (dispatch, getState) => {
+    dispatch(imagesCategorySwitched())
     return getImages()
       .then(images => dispatch(imagesAllSuccess(images)))
       .catch(error => {
