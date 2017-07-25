@@ -9,7 +9,7 @@ export const ImagesList = ({ items }) => (
 )
 
 ImagesList.propTypes = {
-    items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 }
 
 export default ImagesList

@@ -6,9 +6,7 @@ export default (store) => ({
   path : 'images',
 
   getComponent (nextState, cb) {
-
     require.ensure([], (require) => {
-
       const Categories = require('./containers/CategoriesContainer').default
       const reducer = require('./modules/categories').default
 
@@ -17,7 +15,6 @@ export default (store) => ({
       store.dispatch(categoriesAll(categoriesApi.getAllCategories))
 
       cb(null, Categories)
-
     }, 'categories')
   }
 })

@@ -8,14 +8,14 @@ export const IMAGES_ALL_SUCCESS = 'IMAGES_ALL_SUCCESS'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function imagesAllSuccess(images) {
+export function imagesAllSuccess (images) {
   return {
     type: IMAGES_ALL_SUCCESS,
     images
   }
 }
 
-export function imagesCategorySwitched() {
+export function imagesCategorySwitched () {
   return {
     type: IMAGES_CATEGORY_SWITCHED
   }
@@ -27,7 +27,7 @@ export const imagesAll = (getImages) => {
     return getImages()
       .then(images => dispatch(imagesAllSuccess(images)))
       .catch(error => {
-        throw(error)
+        throw (error)
       })
   }
 }
@@ -45,7 +45,7 @@ export const actions = {
 const initialState = {
   complete: false,
   images: []
-};
+}
 
 const ACTION_HANDLERS = {
   [IMAGES_CATEGORY_SWITCHED]: (state, action) => initialState,
