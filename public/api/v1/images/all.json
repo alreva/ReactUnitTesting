@@ -11,7 +11,12 @@
     },
     {
         "id": "3",
-        "name": "Category 3",
+        "name": "Category 3 (no images)",
         "path": "/api/v1/images/3.json"
+    },
+    {
+        "id": "4",
+        "name": "Category 4 (Invalid JSON. API will throw an error)",
+        "path": "/api/v1/images/4.json"
     }
 ]

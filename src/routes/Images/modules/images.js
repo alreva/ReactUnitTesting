@@ -1,3 +1,5 @@
+import { unexpectedError } from 'store/error'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -27,7 +29,7 @@ export const imagesAll = (getImages) => {
     return getImages()
       .then(images => dispatch(imagesAllSuccess(images)))
       .catch(error => {
-        throw (error)
+        dispatch(unexpectedError(error))
       })
   }
 }
