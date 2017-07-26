@@ -3,7 +3,6 @@ import { unexpectedError } from 'store/error'
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const IMAGES_ALL = 'IMAGES_ALL'
 export const IMAGES_CATEGORY_SWITCHED = 'IMAGES_CATEGORY_SWITCHED'
 export const IMAGES_ALL_SUCCESS = 'IMAGES_ALL_SUCCESS'
 
