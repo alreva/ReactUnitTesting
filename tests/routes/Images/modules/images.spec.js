@@ -9,7 +9,7 @@ import {
 } from 'routes/Images/modules/images'
 import { UNEXPECTED_ERROR, unexpectedError } from 'store/error'
 
-describe('Images --> images module', () => {
+describe('Images module', () => {
   describe('Async actions', () => {
     describe('imagesAll', () => {
       let _dispatchSpy, _getStateSpy
