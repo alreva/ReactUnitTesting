@@ -16,14 +16,10 @@ const karmaConfig = {
   }],
   frameworks: ['mocha'],
   reporters: ['mocha', 'coverage-istanbul'],
-  coverageReporter: {
-    type: 'text',
-    includeAllSources: true,
-  },
   coverageIstanbulReporter: {
     // reports can be any that are listed here:
     // https://github.com/istanbuljs/istanbul-reports/tree/590e6b0089f67b723a1fdf57bc7ccc080ff189d7/lib
-    reports: ['html', 'lcovonly', 'text-summary', 'text'],
+    reports: ['html', 'text'],
 
     // base output directory. If you include %browser% in the path it will be replaced with the karma browser name
     // dir: path.join(__dirname, 'coverage'),
