@@ -1,4 +1,4 @@
-import { unexpectedError } from 'store/error'
+import { UNEXPECTED_ERROR, unexpectedError } from 'store/error'
 
 // ------------------------------------
 // Constants
@@ -43,17 +43,17 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-const initialState = {
-  complete: false,
-  images: []
-}
+export const initialState = {}
 
 const ACTION_HANDLERS = {
-  [IMAGES_CATEGORY_SWITCHED]: (state, action) => initialState,
+  [IMAGES_CATEGORY_SWITCHED]: (state, action) => ({
+    complete: false
+  }),
   [IMAGES_ALL_SUCCESS]: (state, action) => ({
     complete: true,
     images: action.images
-  })
+  }),
+  [UNEXPECTED_ERROR]: (state, action) => initialState
 }
 
 // ------------------------------------
