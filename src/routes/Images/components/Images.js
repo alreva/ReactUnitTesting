@@ -4,15 +4,16 @@ import { LoadingImages } from './LoadingImages'
 import { EmptyImages } from './EmptyImages'
 import { ImagesList } from './ImagesList'
 
-export const Images = ({ complete, items }) => (
-  complete
-    ? items.length > 0 ? <ImagesList items={items} /> : <EmptyImages />
-    : <LoadingImages />
+export const Images = ({ complete = null, items = [] }) => (
+  complete !== null &&
+    (complete
+      ? items.length > 0 ? <ImagesList items={items} /> : <EmptyImages />
+      : <LoadingImages />)
 )
 
 Images.propTypes = {
-  complete: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired
+  complete: PropTypes.bool,
+  items: PropTypes.array
 }
 
 export default Images
