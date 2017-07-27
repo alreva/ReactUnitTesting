@@ -1,6 +1,5 @@
 import { injectReducer } from 'store/reducers'
 import { imagesAll } from './modules/images'
-import imagesApi from './api/ImagesApi'
 
 export default (store) => ({
   path : 'images/:id',
@@ -12,7 +11,7 @@ export default (store) => ({
 
       injectReducer(store, { key: 'images', reducer })
 
-      store.dispatch(imagesAll(() => imagesApi.getImages(nextState.params.id)))
+      store.dispatch(imagesAll(nextState.params.id))
 
       cb(null, Images)
     }, 'images')

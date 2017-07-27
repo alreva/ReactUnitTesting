@@ -8,35 +8,36 @@ import {
   default as imagesReducer
 } from 'routes/Images/modules/images'
 import { UNEXPECTED_ERROR, unexpectedError } from 'store/error'
+import { jsonOk, jsonError } from '../../../mocks/fetch.spec'
 
 describe('Images module', () => {
   describe('Async actions', () => {
     describe('imagesAll', () => {
       let _dispatchSpy, _getStateSpy
 
-      beforeEach(() => {
-        _dispatchSpy = sinon.spy()
-        _getStateSpy = sinon.spy()
-      })
-
       describe('when OK', () => {
         let _getImages
         const _expectedImages = ['1', '2']
 
         beforeEach(() => {
-          _getImages = () => new Promise((resolve, reject) => {
-            resolve(_expectedImages)
-          })
+          sinon.stub(window, 'fetch')
+          window.fetch.returns(jsonOk(_expectedImages));
+          _dispatchSpy = sinon.spy()
+          _getStateSpy = sinon.spy()
+        })
+
+        afterEach(() => {
+          window.fetch.restore()
         })
 
         it(`first dispatches ${IMAGES_CATEGORY_SWITCHED}`, () => {
-          return imagesAll(_getImages)(_dispatchSpy, _getStateSpy)
+          return imagesAll('1')(_dispatchSpy, _getStateSpy)
             .then(() => {
               _dispatchSpy.should.have.been
                 .calledTwice()
               _dispatchSpy
                 .firstCall.should.have.been
-                .calledWith(imagesCategorySwitched())
+                .calledWith(imagesCategorySwitched('1'))
             })
         })
 
@@ -53,31 +54,40 @@ describe('Images module', () => {
 
       describe('when error', () => {
         let _getImagesErr
-        const _expectedError = new Error('some error 29d7feca53374118aaf53ccc110bc70d')
+        const _errorMessage = 'some error 29d7feca53374118aaf53ccc110bc70d'
 
         beforeEach(() => {
-          _getImagesErr = () => new Promise((resolve, reject) => {
-            throw _expectedError
-          })
+          sinon.stub(window, 'fetch')
+          window.fetch.returns(jsonError('404', _errorMessage));
+          _dispatchSpy = sinon.spy()
+          _getStateSpy = sinon.spy()
+        })
+        
+        afterEach(() => {
+          window.fetch.restore()
         })
 
         it(`first dispatches ${IMAGES_CATEGORY_SWITCHED}`, () => {
-          return imagesAll(_getImagesErr)(_dispatchSpy, _getStateSpy)
+          return imagesAll('1')(_dispatchSpy, _getStateSpy)
             .then(() => {
               _dispatchSpy.should.have.been.calledTwice()
               _dispatchSpy
                 .firstCall.should.have.been
-                .calledWith(imagesCategorySwitched())
+                .calledWith(imagesCategorySwitched('1'))
             })
         })
 
         it(`then dispatches ${UNEXPECTED_ERROR}`, () => {
-          return imagesAll(_getImagesErr)(_dispatchSpy, _getStateSpy)
+          const expected = unexpectedError(new Error(_errorMessage))
+          return imagesAll('1')(_dispatchSpy, _getStateSpy)
             .then(() => {
               _dispatchSpy.should.have.been.calledTwice()
               _dispatchSpy
                 .secondCall.should.have.been
-                .calledWith(unexpectedError(_expectedError))
+                .calledWith(sinon.match(actual => 
+                  actual.type === expected.type
+                    && actual.error.message === expected.error.message
+                ))
             })
         })
       })
@@ -96,8 +106,8 @@ describe('Images module', () => {
 
     describe(`Action ${IMAGES_CATEGORY_SWITCHED}`, () => {
       it('should have \'pending\' state', () => {
-        imagesReducer(initialState, imagesCategorySwitched())
-          .should.deep.equal({ complete: false })
+        imagesReducer(initialState, imagesCategorySwitched('1'))
+          .should.deep.equal({ complete: false, categoryId: '1' })
       })
     })
 

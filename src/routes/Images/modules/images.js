@@ -1,6 +1,17 @@
 import { UNEXPECTED_ERROR, unexpectedError } from 'store/error'
 
 // ------------------------------------
+// API
+// ------------------------------------
+function getImages (categoryId) {
+  return fetch(`/api/v1/images/${categoryId}.json`)
+    .then(response => response.json())
+    .catch(response => {
+      throw new Error(response._bodyText.substr(1, response._bodyText.length - 2))
+    })
+}
+
+// ------------------------------------
 // Constants
 // ------------------------------------
 export const IMAGES_CATEGORY_SWITCHED = 'IMAGES_CATEGORY_SWITCHED'
@@ -16,16 +27,17 @@ export function imagesAllSuccess (images) {
   }
 }
 
-export function imagesCategorySwitched () {
+export function imagesCategorySwitched (id) {
   return {
-    type: IMAGES_CATEGORY_SWITCHED
+    type: IMAGES_CATEGORY_SWITCHED,
+    id
   }
 }
 
-export const imagesAll = (getImages) => {
+export const imagesAll = (categoryId) => {
   return (dispatch, getState) => {
-    dispatch(imagesCategorySwitched())
-    return getImages()
+    dispatch(imagesCategorySwitched(categoryId))
+    return getImages(categoryId)
       .then(images => dispatch(imagesAllSuccess(images)))
       .catch(error => {
         dispatch(unexpectedError(error))
@@ -47,7 +59,8 @@ export const initialState = {}
 
 const ACTION_HANDLERS = {
   [IMAGES_CATEGORY_SWITCHED]: (state, action) => ({
-    complete: false
+    complete: false,
+    categoryId: action.id
   }),
   [IMAGES_ALL_SUCCESS]: (state, action) => ({
     complete: true,
