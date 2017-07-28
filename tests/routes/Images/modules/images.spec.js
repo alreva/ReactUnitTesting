@@ -21,7 +21,7 @@ describe('Images module', () => {
 
         beforeEach(() => {
           sinon.stub(window, 'fetch')
-          window.fetch.returns(jsonOk(_expectedImages));
+          window.fetch.returns(jsonOk(_expectedImages))
           _dispatchSpy = sinon.spy()
           _getStateSpy = sinon.spy()
         })
@@ -53,16 +53,15 @@ describe('Images module', () => {
       })
 
       describe('when error', () => {
-        let _getImagesErr
         const _errorMessage = 'some error 29d7feca53374118aaf53ccc110bc70d'
 
         beforeEach(() => {
           sinon.stub(window, 'fetch')
-          window.fetch.returns(jsonError('404', _errorMessage));
+          window.fetch.returns(jsonError('404', _errorMessage))
           _dispatchSpy = sinon.spy()
           _getStateSpy = sinon.spy()
         })
-        
+
         afterEach(() => {
           window.fetch.restore()
         })
@@ -84,9 +83,9 @@ describe('Images module', () => {
               _dispatchSpy.should.have.been.calledTwice()
               _dispatchSpy
                 .secondCall.should.have.been
-                .calledWith(sinon.match(actual => 
-                  actual.type === expected.type
-                    && actual.error.message === expected.error.message
+                .calledWith(sinon.match(actual =>
+                  actual.type === expected.type &&
+                  actual.error.message === expected.error.message
                 ))
             })
         })

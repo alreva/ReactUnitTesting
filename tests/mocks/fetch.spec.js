@@ -6,9 +6,9 @@ export function jsonOk (body) {
     headers: {
       'Content-type': 'application/json'
     }
-  });
+  })
 
-  return new Promise.resolve(mockResponse);
+  return Promise.resolve(mockResponse)
 }
 
 export function jsonError (status, body) {
@@ -17,7 +17,7 @@ export function jsonError (status, body) {
     headers: {
       'Content-type': 'application/json'
     }
-  });
+  })
 
-  return new Promise.reject(mockResponse);
+  return Promise.reject(mockResponse)
 }
