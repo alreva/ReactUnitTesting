@@ -1,4 +1,13 @@
 // ------------------------------------
+// API
+// ------------------------------------
+function getAllCategories () {
+  return fetch('/api/v1/images/all.json')
+    .then(response => response.json())
+    .catch(error => error)
+}
+
+// ------------------------------------
 // Constants
 // ------------------------------------
 export const CATEGORIES_ALL = 'CATEGORIES_ALL'
@@ -15,9 +24,9 @@ export function categoriesAllSuccess (categories) {
   }
 }
 
-export const categoriesAll = (getCategories) => {
+export const categoriesAll = () => {
   return (dispatch, getState) => {
-    return getCategories()
+    return getAllCategories()
       .then(categories => dispatch(categoriesAllSuccess(categories)))
       .catch(error => {
         throw (error)

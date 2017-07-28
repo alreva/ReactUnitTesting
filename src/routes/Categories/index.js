@@ -1,6 +1,5 @@
 import { injectReducer } from '../../store/reducers'
 import { categoriesAll } from './modules/categories'
-import categoriesApi from './api/CategoriesApi'
 
 export default (store) => ({
   path : 'images',
@@ -9,11 +8,8 @@ export default (store) => ({
     require.ensure([], (require) => {
       const Categories = require('./containers/CategoriesContainer').default
       const reducer = require('./modules/categories').default
-
       injectReducer(store, { key: 'categories', reducer })
-
-      store.dispatch(categoriesAll(categoriesApi.getAllCategories))
-
+      store.dispatch(categoriesAll())
       cb(null, Categories)
     }, 'categories')
   }
