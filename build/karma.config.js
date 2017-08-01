@@ -9,11 +9,17 @@ const karmaConfig = {
   browsers: ['PhantomJS'],
   singleRun: !argv.watch,
   files: [{
-    pattern  : TEST_BUNDLER,
-    watched  : false,
-    served   : true,
-    included : true
-  }],
+      pattern: './node_modules/phantomjs-polyfill-find-index/findIndex-polyfill.js',
+      watched: false,
+      served: true,
+      included: true
+    },
+    {
+      pattern: TEST_BUNDLER,
+      watched: false,
+      served: true,
+      included: true
+    }],
   frameworks: ['mocha'],
   reporters: ['mocha', /*'coverage-istanbul'*/],
   coverageIstanbulReporter: {
