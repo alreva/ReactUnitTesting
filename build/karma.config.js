@@ -15,7 +15,7 @@ const karmaConfig = {
     included : true
   }],
   frameworks: ['mocha'],
-  reporters: ['mocha', 'coverage-istanbul'],
+  reporters: ['mocha', /*'coverage-istanbul'*/],
   coverageIstanbulReporter: {
     // reports can be any that are listed here:
     // https://github.com/istanbuljs/istanbul-reports/tree/590e6b0089f67b723a1fdf57bc7ccc080ff189d7/lib
