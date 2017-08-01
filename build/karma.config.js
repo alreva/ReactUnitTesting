@@ -37,7 +37,7 @@ const karmaConfig = {
     // stop istanbul outputting messages like `File [${filename}] ignored, nothing could be mapped`
     skipFilesWithNoCoverage: false,
 
-      // Most reporters accept additional config options. You can pass these through the `report-config` option
+    // Most reporters accept additional config options. You can pass these through the `report-config` option
     'report-config': {
 
       // all options available at:
